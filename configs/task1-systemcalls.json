@@ -1,0 +1,32 @@
+{
+    "name": "Task 1: System Calls",
+    "id": "task1-systemcalls",
+    "initial_pc": "0x0",
+    "os_program_file": "/programs/public/os/systemcalls.s",
+    "user_programs": [
+        {
+            "name": "user_systemcalls",
+            "file": "/programs/public/user_programs/user_systemcalls.s",
+            "address": "0x4000000"
+        }
+    ],
+    "initial_memory": {
+        "0xf00": "0x6c6c6548",
+        "0xf04": "0x7953206f",
+        "0xf08": "0x63724173",
+        "0xf0c": "0x6c432068",
+        "0xf10": "0x00737361"
+    },
+    "memory_mapped_registers": {
+        "mtime": "0xffff0000",
+        "mtimeh": "0xffff0004",
+        "mtimecmp": "0xffff0008",
+        "mtimecmph": "0xffff000c",
+        "keyboard_ready": "0xffff0010",
+        "keyboard_data": "0xffff0014",
+        "terminal_ready": "0xffff0018",
+        "terminal_data": "0xffff001c",
+        "display": "0xffff1000"
+    },
+    "terminal_delay": "3"
+}

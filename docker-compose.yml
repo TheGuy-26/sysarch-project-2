@@ -1,0 +1,37 @@
+services:
+  sysarch-backend:
+    container_name: sysarch-backend
+    hostname: sysarch-backend
+    image: janreineke/sysarch-backend
+    # build: backend
+    command: java -cp '*' org.scalatest.run project2.operating_systems.InteractiveTester
+    volumes:
+      - ./MachineModeCore.sv:/verilog/MachineModeCore.sv
+      - ./programs:/programs
+    environment:
+      - CORE_PATH=/verilog/MachineModeCore.sv
+      - PLAY_HTTP_PORT=9000
+      - HOST=sysarch-frontend
+    networks:
+      - sysarch
+    restart: always
+
+  sysarch-frontend:
+    container_name: sysarch-frontend
+    hostname: sysarch-frontend
+    image: janreineke/sysarch-frontend
+    # build: frontend
+    networks:
+      - sysarch
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./configs:/configs
+    environment:
+      - PLAY_HTTP_PORT=9000
+      - CONFIG_PATH=/configs
+    restart: always
+
+networks:
+  sysarch:
+    driver: bridge

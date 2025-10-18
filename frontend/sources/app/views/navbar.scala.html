@@ -1,0 +1,86 @@
+<div class="modal fade" id="configSelectModal" tabindex="-1" role="dialog" aria-labelledby="configSelectModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Select Config</h5>
+        <button type="button" class="btn btn-outline-dark ms-auto" data-bs-dismiss="modal" aria-label="Close" style="margin-left:auto;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <select class="btn btn-outline-dark dropdown-toggle" id="configDropdown">
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="saveConfigBtn">Load Config</button>
+          <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            var configDropdown = document.getElementById('configDropdown');
+            var saveBtn = document.getElementById('saveConfigBtn');
+            saveBtn.addEventListener('click', function() {
+            var selectedConfigID = configDropdown.value;
+            // Trigger your logic here, e.g., send selectedConfig to backend or update UI
+            var selectedConfig = null;
+            console.log('Selected config:', selectedConfigID);
+            available_configs.forEach(function(config) {
+                if (config.id === selectedConfigID) {
+                    selectedConfig = config;
+                }
+            });
+            console.log('Selected config:', selectedConfig);
+            if (!selectedConfig) {
+                console.error('No config selected');
+                return;
+            }
+            fetch(location.protocol + '//' + location.hostname + ':' + location.port + '/set-config', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ config: selectedConfig })
+              });
+            });
+          });
+          </script>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <div class="btn-group ms-right" role="group" aria-label="Controls">
+        <button type="button" class="btn btn-outline-dark" id="Select" data-bs-toggle="modal" data-bs-target="#configSelectModal"><i class="bi-folder2-open"></i> Select Config</button>
+        <button type="button" class="btn btn-outline-dark" id="Upload"><i class="bi-arrow-up"></i> Upload Config</button>
+      </div>
+      
+      <input type="file" id="configInput" style="display: none;" accept=".json">
+      <div>     
+        <div class="input-group">
+          <button type="button" class="btn btn-outline-dark" id="Restart"><i class="bi-arrow-clockwise"></i> Restart</button>
+          <button type="button" class="btn btn-outline-dark" id="Step"><i class="bi-play-circle"></i> Step</button>
+            <input type="number" class="form-control run-button run-button-input" placeholder="Cycles" id="cycle-input" value="100">
+            <div class="input-group-append run-button">
+                <span class="input-group-text"> cycles </span>
+            </div>
+            <input type="number" class="form-control run-button run-button-input" placeholder="Delay (ms)" id="delay-input" value="0">
+            <div class="input-group-append run-button">
+                <span class="input-group-text"> ms delay </span>
+            </div>
+          <button type="button" class="btn btn-outline-dark run-button" id="Run"><i class="bi-play-circle"></i> Run</button>
+        </div>
+      </div>
+      <div>
+        <div class="counter">
+          <span id="state-counter" class="counter-span"></span>
+        </div>
+        <div class="btn-group ms-right" role="group" aria-label="Controls">
+          <button type="button" class="btn btn-outline-dark" id="AllBack"><i class="bi-skip-start"></i></button>
+          <button type="button" class="btn btn-outline-dark" id="Back"><i class="bi-arrow-left"></i></button>
+          <button type="button" class="btn btn-outline-dark" id="Forward"><i class="bi-arrow-right"></i></button>
+          <button type="button" class="btn btn-outline-dark" id="AllForward"><i class="bi-skip-end"></i></button>
+        </div>
+      </div> 
+    </div>
+  </nav>

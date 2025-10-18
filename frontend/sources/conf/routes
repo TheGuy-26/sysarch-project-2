@@ -1,0 +1,28 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# https://www.playframework.com/documentation/latest/ScalaRouting
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                   controllers.WebUIController.index
+POST    /initial-state    controllers.WebUIController.startSimulation
+POST    /current-state          controllers.WebUIController.currentState
+POST    /state-update      controllers.WebUIController.updateState
+GET     /get-current-state  controllers.WebUIController.getState
++nocsrf
+POST    /new-action         controllers.WebUIController.createAction
+GET     /get-next-action    controllers.WebUIController.getAction
+GET     /socket             controllers.WebUIController.socket
+
+POST    /new-key         controllers.WebUIController.setKey
+GET     /get-key    controllers.WebUIController.getKey
+
+POST    /set-config         controllers.WebUIController.setConfig
+GET     /get-config    controllers.WebUIController.getConfig
+
+GET     /get-available-configs controllers.WebUIController.getAvailableConfigs
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+POST    /set-error         controllers.WebUIController.setError

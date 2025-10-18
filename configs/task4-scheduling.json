@@ -1,0 +1,42 @@
+{
+    "name": "Task 4: STCF Scheduling",
+    "id": "task4-scheduling",
+    "initial_pc": "0x0",
+    "os_program_file": "/programs/public/os/scheduling.s",
+    "user_programs": [
+        {
+            "name": "startup",
+            "file": "/programs/public/user_programs/startup.s",
+            "address": "0x4000000"
+        },
+        {
+            "name": "job_a",
+            "file": "/programs/public/user_programs/jobA.s",
+            "address": "0x5000000"
+        },
+        {
+            "name": "job_b",
+            "file": "/programs/public/user_programs/jobB.s",
+            "address": "0x6000000"
+        },
+        {
+            "name": "dummy_job",
+            "file": "/programs/public/user_programs/dummy.s",
+            "address": "0x7000000"
+        }
+    ],
+    "initial_memory": {
+    },
+    "memory_mapped_registers": {
+        "mtime": "0xffff0000",
+        "mtimeh": "0xffff0004",
+        "mtimecmp": "0xffff0008",
+        "mtimecmph": "0xffff000c",
+        "keyboard_ready": "0xffff0010",
+        "keyboard_data": "0xffff0014",
+        "terminal_ready": "0xffff0018",
+        "terminal_data": "0xffff001c",
+        "display": "0xffff1000"
+    },
+    "terminal_delay": "3"
+}

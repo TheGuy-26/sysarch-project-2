@@ -1,0 +1,59 @@
+<div class="memory">
+    <h4 style="padding: 8px;">Memory</h4>
+    <nav class="navbar navbar-light bg-light">
+    <div class="btn-group ms-right" role="group" aria-label="Controls">
+        <button type="button" class="btn btn-outline-dark" id="MemBack"><i class="bi-arrow-left"></i></button>
+        <button class="btn btn-outline-dark dropdown-toggle" type="button" id="baseDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 0;">
+            <span id="memory-base"></span>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="baseDropdown">
+            <a class="dropdown-item" href="#" onclick="storeBase(0x00000000)">0x00000000</a>
+            <a class="dropdown-item" href="#" onclick="storeBase(0x00004000)">0x00004000</a>
+            <a class="dropdown-item" href="#" onclick="storeBase(0x00008000)">0x00008000</a>
+            <a class="dropdown-item" href="#" onclick="storeBase(0x0000c000)">0x0000c000</a>
+            <a class="dropdown-item" href="#" onclick="storeBase(0xffff0000)">MMIO: 0xffff0000</a>
+            <a class="dropdown-item" href="#" onclick="storeBase(0xffff1000)">Display: 0xffff1000</a>
+            <div class="dropdown-divider"></div>
+            <form class="dropdown-input">
+            <div class="form-group">
+                <input type="text" class="form-control" id="customBaseInput" placeholder="Enter address">
+            </div>
+            <div class="btn btn-outline-dark" onclick="storeBase(parseInt(document.getElementById('customBaseInput').value))">Go</div>
+            </form>
+        </div>
+        <button type="button" class="btn btn-outline-dark" id="MemForward"><i class="bi-arrow-right"></i></button>
+    </div>
+    </nav>
+    <span class="memory-content" id="memory-content"></span>
+</div>
+<div class="col">    
+    <h4>Input</h4>
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="keyboard-switch">
+        <label class="form-check-label" for="keyboard-switch" id="keyboard-switch-label">Enable Keyboard</label>
+    </div>
+    <pre class="terminal" id="terminal-input"></pre>
+    
+    <ul class="nav nav-tabs mb-3">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="terminal-tab" data-bs-toggle="tab" data-bs-target="#terminal"
+                type="button" role="tab" aria-controls="terminal" aria-selected="true">Terminal</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="display-tab" data-bs-toggle="tab" data-bs-target="#display" type="button" role="tab"
+                aria-controls="display" aria-selected="false">Display</button>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="terminal" role="tabpanel" aria-labelledby="terminal-tab">
+            <div id="terminal">
+                <h4>Terminal Output</h4>
+                <pre class="terminal" id="terminal-output"></pre>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="display" role="tabpanel" aria-labelledby="display-tab">
+            <div id="display-output"></div>
+        </div>
+    </div>
+</div>

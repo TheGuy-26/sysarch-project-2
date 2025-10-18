@@ -1,0 +1,31 @@
+{
+    "name": "Task 2: Paint (with Bonus)",
+    "id": "task2b-paint-bonus",
+    "initial_pc": "0x0",
+    "os_program_file": "/programs/public/os/paint-bonus.s",
+    "user_programs": [
+    ],
+    "initial_memory": {
+        "0x00010000": "0x20646420",
+        "0x00010004": "0x20617373",
+        "0x00010008": "0x20616161",
+        "0x0001000c": "0x64732073",
+        "0x00010010": "0x20647320",
+        "0x00010014": "0x20642064",
+        "0x00010018": "0x77206477",
+        "0x0001001c": "0x20772064",
+        "0x00010020": "0x00002020"
+    },
+    "memory_mapped_registers": {
+        "mtime": "0xffff0000",
+        "mtimeh": "0xffff0004",
+        "mtimecmp": "0xffff0008",
+        "mtimecmph": "0xffff000c",
+        "keyboard_ready": "0xffff0010",
+        "keyboard_data": "0xffff0014",
+        "terminal_ready": "0xffff0018",
+        "terminal_data": "0xffff001c",
+        "display": "0xffff1000"
+    },
+    "terminal_delay": "500"
+}

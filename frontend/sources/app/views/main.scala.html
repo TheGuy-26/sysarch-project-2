@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/bootstrap/bootstrap.min.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/bootstrap-icons/bootstrap-icons.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/highlightjs/default.min.css")">
+        <title>RISC-V Processor View</title>
+    </head>
+    <body class="container">
+        <script src="@routes.Assets.versioned("javascripts/utils.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/ui.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/state-management.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/webhook.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/bootstrap/bootstrap.bundle.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/highlightjs/highlight.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/highlightjs/highlight.ln.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/highlightjs/riscvasm.min.js")" type="text/javascript"></script>
+        @navbar()
+        <div id="error-message" class="alert alert-danger error-message" role="alert" style="display: none;">
+        </div>
+        <div class="content" id="content">
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col">
+                        @sourcecode()
+                    </div>
+                    <div class="col sidebar">
+                        @sidebar()
+                    </div>
+                </div>
+                <div class="row bottombar">
+                    @bottombar()
+                </div>
+            </div>
+        </div>
+        <div class="content large-message" id="uninitialized-message">
+            Please upload a config file to start the simulation.
+        </div>
+        <script>
+            fetchCurrentState();
+            fetchAvailableConfigs();
+        </script>
+        <script src="@routes.Assets.versioned("javascripts/main.js")" type="text/javascript"></script>
+    </body>
+</html>
